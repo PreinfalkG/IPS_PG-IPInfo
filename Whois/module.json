@@ -1,0 +1,12 @@
+{
+    "id": "{1290D9CC-F758-EFFA-2C9B-F0934E67E5FF}",
+    "name": "Whois",
+    "type": 3,
+    "vendor": "",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "WHOIS",
+    "url": "https://www.whoisxmlapi.com"
+}

@@ -1,0 +1,12 @@
+{
+    "id": "{61D34F2D-1603-49DF-6476-90FEB77AAFAB}",
+    "name": "IP Stack",
+    "type": 3,
+    "vendor": "",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "IPSTACK",
+    "url": "http://api.ipstack.com/"
+}

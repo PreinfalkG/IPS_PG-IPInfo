@@ -1,0 +1,12 @@
+{
+    "id": "{97299E72-F201-1EA8-3CE8-CBFF13D37FA7}",
+    "name": "IP Info",
+    "type": 3,
+    "vendor": "",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "IPINFO",
+    "url": "https://ipinfo.io/"
+}

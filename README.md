@@ -1,20 +1,12 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# IP Address Informations
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Folgende Module beinhaltet das IP Address Informations Repository:
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+- __IP_Info__ ([Dokumentation](IP_Info))  
+	Kurze Beschreibung des Moduls.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+- __IP_Stack__ ([Dokumentation](IP_Stack))  
+	Kurze Beschreibung des Moduls.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+- __Whois__ ([Dokumentation](Whois))  
+	Kurze Beschreibung des Moduls.
