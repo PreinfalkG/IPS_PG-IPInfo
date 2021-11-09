@@ -13,6 +13,7 @@ Beschreibung des Moduls.
 
 ### 1. Funktionsumfang
 
+IPv4
 * http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8
 * http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=ALL
 * http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=ALL&delimiter=;%20
@@ -22,6 +23,12 @@ Beschreibung des Moduls.
 * http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=org,ValueOnly
 * http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=country,region,city,org,hostname,ValueOnly&delimiter=|
 * http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=json
+
+IPv6
+* http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=2001:4860:4860::8888&format=ALL&delimiter=;%20
+
+Rate Limits
+Free usage of our API is limited to 50,000 API requests per month. If you exceed that limit, we'll return a 429 HTTP status code to you.
 
 
 ### 2. Vorraussetzungen

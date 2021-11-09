@@ -13,7 +13,22 @@ Beschreibung des Moduls.
 
 ### 1. Funktionsumfang
 
-*
+* http://127.0.0.1:3777/hook/NetInfo?GetIpStack=8.8.8.8&format=region_name&delimiter=;%20
+* http://127.0.0.1:3777/hook/NetInfo?GetIpStack=8.8.8.8&format=latitude,longitude&delimiter=;%20 
+* http://127.0.0.1:3777/hook/NetInfo?GetIpStack=8.8.8.8&format=json&delimiter=;%20
+
+Sub Array's not 'implode' jet
+* http://127.0.0.1:3777/hook/NetInfo?GetIpStack=8.8.8.8&format=location&delimiter=;%20
+
+API Usage: 100 per Month
+
+
+Other API's >> https://ipstack.com/other
+https://ipapi.com/                 :: Real-time Geolocation & Reverse IP Lookup REST API
+https://userstack.com/             :: Detect any Browser, Device & OS in Real-Time
+https://positionstack.com/         :: Accurate Forward & Reverse Batch Geocoding REST API
+https://countrylayer.com/          :: Reliable real-time country data API for your business.
+https://languagelayer.com/         :: Powerful Language Detection JSON API for Developers
 
 ### 2. Vorraussetzungen
 

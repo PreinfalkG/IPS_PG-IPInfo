@@ -1,5 +1,24 @@
 {
-    "elements": [],
+    "elements": [
+
+        { "name": "EnableAPI", "type": "CheckBox", "caption": "Enable 'ipstack.com' API Requests" },
+        { "name": "access_key", "type": "ValidationTextBox", "caption": "Access Key" },
+
+        { "name": "LogLevel", "type": "Select", "caption": "Debug/Log Level",
+            "options": [
+                { "label": "ALL", "value": 9 },
+                { "label": "TEST", "value": 8 },
+                { "label": "TRACE", "value": 7 },
+                { "label": "COMMUNICATION", "value": 6 },
+                { "label": "DEBUG", "value": 5 },
+				{ "label": "INFO", "value": 4 },
+                { "label": "WARN", "value": 3 },
+                { "label": "ERROR", "value": 2 },
+				{ "label": "FATAL", "value": 1 },
+                { "label": "OFF", "value": 0 }
+        ]}   
+
+    ],
     "actions": [],
     "status": []
 }

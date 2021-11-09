@@ -2,7 +2,7 @@
     "id": "{61D34F2D-1603-49DF-6476-90FEB77AAFAB}",
     "name": "IP Stack",
     "type": 3,
-    "vendor": "",
+    "vendor": "ipstack.com",
     "aliases": [],
     "parentRequirements": [],
     "childRequirements": [],

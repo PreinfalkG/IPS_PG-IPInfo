@@ -20,22 +20,25 @@ require_once __DIR__ . '/../libs/SleekDB/SleekDB.php';
 		public function __construct($InstanceID) {
 		
 			parent::__construct($InstanceID);		// Diese Zeile nicht löschen
+		
+			if(IPS_InstanceExists($InstanceID)) {
 
-			$this->parentRootId = IPS_GetParent($this->InstanceID);
-			//$this->archivInstanzID = IPS_GetInstanceListByModuleID("{43192F0B-135B-4CE7-A0A7-1475603F3060}")[0];
-			
-			$currentStatus = $this->GetStatus();
-			if($currentStatus == 102) {				//Instanz ist aktiv
-				$this->logLevel = $this->ReadPropertyInteger("LogLevel");
-				if($this->logLevel >= LogLevel::TRACE) { $this->AddLog(__FUNCTION__, sprintf("Log-Level is %d", $this->logLevel), 0); }
+				$this->parentRootId = IPS_GetParent($InstanceID);
+				//$this->archivInstanzID = IPS_GetInstanceListByModuleID("{43192F0B-135B-4CE7-A0A7-1475603F3060}")[0];
+
+				$currentStatus = $this->GetStatus();
+				if($currentStatus == 102) {				//Instanz ist aktiv
+					$this->logLevel = $this->ReadPropertyInteger("LogLevel");
+					if($this->logLevel >= LogLevel::TRACE) { $this->AddLog(__FUNCTION__, sprintf("Log-Level is %d", $this->logLevel), 0); }
+				} else {
+					if($this->logLevel >= LogLevel::WARN) { $this->AddLog(__FUNCTION__, sprintf("Current Status is '%s'", $currentStatus), 0); }	
+				}
+				$this->sleekDbDir = IPS_GetLogDir()."SleekDB";
+				$this->configuration = ["auto_cache" => true, "cache_lifetime" => null, "timeout" => false, "primary_key" => "_id", "search" => [ "min_length" => 2, "mode" => "or", "score_key" => "scoreKey"]];
+				$this->sleekDBStore = \SleekDB\SleekDB::store('CacheIPInfo', $this->sleekDbDir, $this->configuration);
 			} else {
-				if($this->logLevel >= LogLevel::WARN) { $this->AddLog(__FUNCTION__, sprintf("Current Status is '%s'", $currentStatus), 0); }	
+				IPS_LogMessage("[" . __CLASS__ . "] - " . __FUNCTION__, sprintf("INFO: Instance '%s' not exists", $InstanceID));
 			}
-
-			$this->sleekDbDir = IPS_GetLogDir()."SleekDB";
-			$this->configuration = ["auto_cache" => true, "cache_lifetime" => null, "timeout" => false, "primary_key" => "_id", "search" => [ "min_length" => 2, "mode" => "or", "score_key" => "scoreKey"]];
-			$this->sleekDBStore = \SleekDB\SleekDB::store('CacheIPInfo', $this->sleekDbDir, $this->configuration);
-
 		}
 
 
@@ -45,7 +48,7 @@ require_once __DIR__ . '/../libs/SleekDB/SleekDB.php';
 			//Never delete this line!
 			parent::Create();
 
-			IPS_LogMessage(__FUNCTION__, sprintf("Create Modul '%s [%s']...", IPS_GetName($this->InstanceID), $this->InstanceID));
+			IPS_LogMessage("[" . __CLASS__ . "] - " . __FUNCTION__, sprintf("Create Modul '%s' ...", $this->InstanceID));
 			if($this->logLevel >= LogLevel::INFO) { $this->AddLog(__FUNCTION__, sprintf("Create Modul '%s [%s']...", IPS_GetName($this->InstanceID), $this->InstanceID), 0); }
 
 			$this->RegisterPropertyBoolean('EnableAPI', false);
@@ -63,11 +66,12 @@ require_once __DIR__ . '/../libs/SleekDB/SleekDB.php';
 
 		public function Destroy() {
 
-			IPS_LogMessage(__FUNCTION__, sprintf("Destroy Modul '%s [%s']...", IPS_GetName($this->InstanceID), $this->InstanceID));
+			IPS_LogMessage("[" . __CLASS__ . "] - " . __FUNCTION__, sprintf("Destroy Modul '%s' ...", $this->InstanceID));
 			if($this->logLevel >= LogLevel::INFO) { $this->AddLog(__FUNCTION__, sprintf("Destroy Modul '%s [%s']...", IPS_GetName($this->InstanceID), $this->InstanceID), 0); }
 
 			if (!IPS_InstanceExists($this->InstanceID)) {	// Instanz wurde eben gelöscht und existiert nicht mehr
-				$this->UnregisterHook(self::WEB_HOOK);
+				//$this->UnregisterHook(self::WEB_HOOK);
+				$this->AddLog(__FUNCTION__, sprintf("INFO :: Hook '%s' Konfiguration könnte jetzt ungültig sein!", self::WEB_HOOK), 0, true);
 			}
 			//Never delete this line!
 			parent::Destroy();
@@ -93,8 +97,8 @@ require_once __DIR__ . '/../libs/SleekDB/SleekDB.php';
 		
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data)	{
 
-			$logMsg = sprintf("TimeStamp: %s | SenderID: %s | Message: %s | Data: %s", $TimeStamp, $SenderID, $Message, $Data);
-			IPS_LogMessage(__FUNCTION__, $logMsg);
+			$logMsg = sprintf("TimeStamp: %s | SenderID: %s | Message: %s | Data: %s", $TimeStamp, $SenderID, $Message, print_r($Data,true));
+			IPS_LogMessage("[" . __CLASS__ . "] - " . __FUNCTION__, $logMsg);
 			if($this->logLevel >= LogLevel::TRACE) { $this->AddLog(__FUNCTION__, $logMsg, 0); }
 
 			parent::MessageSink($TimeStamp, $SenderID, $Message, $Data);
@@ -114,7 +118,7 @@ require_once __DIR__ . '/../libs/SleekDB/SleekDB.php';
 
 				$enableAPI = $this->ReadPropertyBoolean("EnableAPI");
 				if($enableAPI) {
-					if($this->logLevel >= LogLevel::DEBUG) { $this->AddLog(__FUNCTION__, sprintf("'%s' not in Cache > init API request ...", $ipAddress), 0); }
+					if($this->logLevel >= LogLevel::DEBUG) { $this->AddLog(__FUNCTION__, sprintf("'%s' not in Cache > Init API request ...", $ipAddress), 0); }
 					$apiUrl = self::API_URL_TEMPLATE;
 					$apiUrl = str_replace("%%IP%%", $ipAddress, $apiUrl);
 					$apiUrl = str_replace("%%TOKEN%%",  $this->ReadPropertyString("apiToken"), $apiUrl);
