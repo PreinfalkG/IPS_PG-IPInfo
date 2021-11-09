@@ -1,4 +1,4 @@
-# IP_Info
+# IP Info Module
 Beschreibung des Moduls.
 
 ### Inhaltsverzeichnis
@@ -13,7 +13,16 @@ Beschreibung des Moduls.
 
 ### 1. Funktionsumfang
 
-*
+* http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8
+* http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=ALL
+* http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=ALL&delimiter=;%20
+* http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=country,org
+* http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=country,region,city,org,hostname&delimiter=%20
+* http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=ValueOnly
+* http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=org,ValueOnly
+* http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=country,region,city,org,hostname,ValueOnly&delimiter=|
+* http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=8.8.8.8&format=json
+
 
 ### 2. Vorraussetzungen
 
