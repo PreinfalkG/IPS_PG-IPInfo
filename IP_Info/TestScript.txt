@@ -1,0 +1,37 @@
+<?php
+const INSTANCE_ID = %%INSTANCE_ID%%;
+const LOCAL_IP = "10.0.10.20";
+
+echo "\n# Get hostname and country for IP as String\n";
+echo IPINFO_GetIPInfoAsString(INSTANCE_ID, "8.8.8.8", "hostname,country", "\n");
+
+echo "\n\n# Get all IP Infos as String\n";
+echo IPINFO_GetIPInfoAsString(INSTANCE_ID, "8.8.8.8", "ALL", "\n");
+echo "\n - - - - - - - - - -\n";
+
+echo "\n\n# Get all IP Infos as Json String\n";
+echo IPINFO_GetIPInfoAsString(INSTANCE_ID, "8.8.8.8", "json", "\n");
+
+echo "\n\n# Get all IP Infos as Array\n";
+$ipInfo = IPINFO_GetIPInfo(INSTANCE_ID,"8.8.8.8"); var_dump($ipInfo);
+
+
+/* Web Hook Requests
+
+IPv4
+* http://127.0.0.1:3777/hook/NetIpInfo?GetIpInfo=8.8.8.8
+* http://127.0.0.1:3777/hook/NetIpInfo?GetIpInfo=8.8.8.8&format=ALL
+* http://127.0.0.1:3777/hook/NetIpInfo?GetIpInfo=8.8.8.8&format=ALL&delimiter=;%20
+* http://127.0.0.1:3777/hook/NetIpInfo?GetIpInfo=8.8.8.8&format=country,org
+* http://127.0.0.1:3777/hook/NetIpInfo?GetIpInfo=8.8.8.8&format=country,region,city,org,hostname&delimiter=%20
+* http://127.0.0.1:3777/hook/NetIpInfo?GetIpInfo=8.8.8.8&format=ValueOnly
+* http://127.0.0.1:3777/hook/NetIpInfo?GetIpInfo=8.8.8.8&format=org,ValueOnly
+* http://127.0.0.1:3777/hook/NetIpInfo?GetIpInfo=8.8.8.8&format=country,region,city,org,hostname,ValueOnly&delimiter=|
+* http://127.0.0.1:3777/hook/NetIpInfo?GetIpInfo=8.8.8.8&format=json
+
+IPv6
+* http://127.0.0.1:3777/hook/NetInfo?GetIpInfo=2001:4860:4860::8888&format=ALL&delimiter=;%20
+
+*/
+
+?>

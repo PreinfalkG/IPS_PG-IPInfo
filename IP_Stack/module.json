@@ -3,7 +3,7 @@
     "name": "IP Stack",
     "type": 3,
     "vendor": "ipstack.com",
-    "aliases": [],
+    "aliases": ["Network IP Stack"],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],

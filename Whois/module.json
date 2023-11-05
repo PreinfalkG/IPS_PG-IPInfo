@@ -3,7 +3,7 @@
     "name": "Whois",
     "type": 3,
     "vendor": "",
-    "aliases": [],
+    "aliases": ["Network Whois"],
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],
