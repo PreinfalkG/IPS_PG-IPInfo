@@ -43,9 +43,16 @@ require_once __DIR__ . '/../libs/SleekDB/SleekDB.php';
 			$logMsg = sprintf("KernelRunlevel '%s'", IPS_GetKernelRunlevel());
 			if($this->logLevel >= LogLevel::DEBUG) { $this->AddLog(__FUNCTION__, $logMsg); }
 
-			$this->RegisterPropertyBoolean('EnableAPI', true);
-			$this->RegisterPropertyString('access_key', "d927aadacc55aaa0770785bb9195f31c");	
-			$this->RegisterPropertyInteger('LogLevel', 3);
+			$hostname = gethostname();
+			if(strpos($hostname, "ADW20") !== false) {
+				$this->RegisterPropertyBoolean('EnableAPI', true);
+				$this->RegisterPropertyString('access_key', "d927aadacc55aaa0770785bb9195f31c");
+				$this->RegisterPropertyInteger('LogLevel', 3);
+			} else {
+				$this->RegisterPropertyBoolean('EnableAPI', true);
+				$this->RegisterPropertyString('access_key', "d927aadacc55aaa0770785bb9195f31c");
+				$this->RegisterPropertyInteger('LogLevel', 3);
+			}
 
 			$runlevel = IPS_GetKernelRunlevel();
 			if($this->logLevel >= LogLevel::TRACE) { $this->AddLog(__FUNCTION__, sprintf("KernelRunlevel '%s'", $runlevel), 0); }	
